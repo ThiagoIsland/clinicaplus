@@ -13,14 +13,10 @@
 <h:body>
     <div class="card">
         <h:form>
-            <p:panel header="Bem-vindo ao Clínica Plus!">
+            <p:panel header="Bem-vindo ao Clínica+">
                 <h:panelGrid columns="1" cellpadding="10">
-                    <!-- Este valor vem do nosso HelloBean -->
-                    <h:outputText value="#{helloBean.message}" style="font-size: 1.2rem;"/>
-
-                    <p:commandButton value="Clique para testar!"
-                                     icon="pi pi-check"
-                                     update="@form" />
+                    <h:outputText value="#{olaClinica.message}" style="font-size: 1.2rem;"/>
+                    <p:commandButton value="Esse é o Stater!" icon="pi pi-check" update="@form" />
                 </h:panelGrid>
             </p:panel>
         </h:form>
