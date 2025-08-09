@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<ui:composition template="/template/template.xhtml">
+    <ui:define name="title">Dashboard</ui:define>
+
+    <ui:define name="content">
+        <div class="card">
+            <h:form id="formCadastro">
+                <p:panel header="Cadastro de Paciente">
+
+                    <h:panelGrid columns="2" cellpadding="10">
+
+                        <p:outputLabel for="nome" value="Nome:"/>
+                        <p:inputText id="nome" required="true" label="Nome"/>
+
+                        <p:outputLabel for="cpf" value="CPF:"/>
+                        <p:inputMask id="cpf" mask="999.999.999-99" required="true" label="CPF"/>
+
+                        <p:outputLabel for="dataNascimento" value="Data de Nascimento:"/>
+                        <p:calendar id="dataNascimento" pattern="dd/MM/yyyy" mask="true" required="true" label="Data de Nascimento"/>
+
+                        <p:outputLabel for="sexo" value="Sexo:"/>
+                        <p:selectOneMenu id="sexo" required="true" label="Sexo">
+                            <f:selectItem itemLabel="Selecione..." itemValue="#{null}" noSelectionOption="true"/>
+                            <f:selectItem itemLabel="Masculino" itemValue="MASCULINO"/>
+                            <f:selectItem itemLabel="Feminino" itemValue="FEMININO"/>
+                            <f:selectItem itemLabel="Indefinido" itemValue="INDEFINIDO"/>
+                        </p:selectOneMenu>
+
+                        <p:outputLabel for="telefone" value="Telefone"/>
+                        <p:inputMask id="telefone"  mask="(99) 099 9 9999-9999" required="true" label="telefone"/>
+
+                        <p:outputLabel for="UF" value="UF:"/>
+                        <p:inputMask id="UF"  required="true" label="UF"/>
+
+                        <p:outputLabel for="cidade" value="Cidade:"/>
+                        <p:inputMask id="cidade"  required="true" label="cidade"/>
+
+                        <p:outputLabel for="sexo" value="Tipo do Logradouro:"/>
+                        <p:selectOneMenu id="tipoLogradouro" required="true" label="tipoLogradouro">
+                            <f:selectItem itemLabel="Selecione..." itemValue="#{null}" noSelectionOption="true"/>
+                            <f:selectItem itemLabel="Rua" itemValue="RUA"/>
+                            <f:selectItem itemLabel="Avenida" itemValue="AVENIDA"/>
+                            <f:selectItem itemLabel="Rodovia" itemValue="RODOVIA"/>
+                            <f:selectItem itemLabel="Travessa" itemValue="TRAVESSA"/>
+                        </p:selectOneMenu>
+
+                        <p:outputLabel for="logradouro" value="Logradouro:"/>
+                        <p:inputMask id="logradouro"  required="true" label="logradouro"/>
+
+                        <p:outputLabel for="numero" value="Número:"/>
+                        <p:inputMask id="numero"  required="true" label="numero"/>
+                    </h:panelGrid>
+
+                    <p:separator />
+
+                    <p:commandButton value="Salvar Paciente"
+                                     actionListener="#{pacienteBean.salvar}"
+                                     update="@form"/>
+
+
+
+                </p:panel>
+            </h:form>
+        </div>
+    </ui:define>
+</ui:composition>
+</html>
