@@ -5,17 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1b4eacb3-f1e3-4fd3-9f31-5fd12fce9408" name="Changes" comment="Modificações padrões reset 2">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/caravela/clinicaplus/domain/Medico.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/caravela/clinicaplus/services/MedicoRepository.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/caravela/clinicaplus/web/MedicoController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/resources/cadastros/medico.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/project.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/caravela/clinicaplus/ClinicaPlusApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/caravela/clinicaplus/ClinicaPlusApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/caravela/clinicaplus/domain/Sexo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/caravela/clinicaplus/domain/Sexo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/resources/cadastros/medico.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/resources/cadastros/medico.xhtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +18,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -39,12 +33,12 @@
     &quot;assignee&quot;: &quot;JulioCesarDiasDoNascimento&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/ThiagoIsland/clinicaplus.git&quot;,
-    &quot;accountId&quot;: &quot;2ce46c54-bc35-4b71-958a-243b7e898b29&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/ThiagoIsland/clinicaplus.git",
+    "accountId": "072f9db7-a921-47ce-b932-01867066da48"
   }
-}</component>
+}]]></component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -128,11 +122,12 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.23892.409" />
-        <option value="bundled-js-predefined-d6986cc7102b-e03c56caf84a-JavaScript-IU-252.23892.409" />
+        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.26053.27" />
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.26053.27" />
       </set>
     </attachedChunks>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="project-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="1b4eacb3-f1e3-4fd3-9f31-5fd12fce9408" name="Changes" comment="" />
@@ -147,6 +142,7 @@
       <workItem from="1755960107001" duration="1335000" />
       <workItem from="1756013137729" duration="1105000" />
       <workItem from="1756014253721" duration="3486000" />
+      <workItem from="1756259618127" duration="1716000" />
     </task>
     <task id="LOCAL-00001" summary="Modificações padrões">
       <option name="closed" value="true" />

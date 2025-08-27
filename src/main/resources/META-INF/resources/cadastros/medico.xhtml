@@ -3,8 +3,26 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
                 xmlns:p="http://primefaces.org/ui" >
-
+    <ui:param name="medicoController" value="#{medicoController}"/>
     <h1>OLA MUNDO</h1>
+
+    <p:inputText id="nome" value="#{medicoController.Nome}"/>
+    <p:inputText id="crm" value="#{}"/>
+    <p:inputText id="cpf" value="#{}"/>
+    <p:inputText id="email" value="#{}"/>
+    <p:inputText id="telefone" value="#{}"/>
+    <p:inputText id="endereco" value="#{}"/>
+    <p:outputLabel for="dataNascimento" value="#{}"/>
+    <p:calendar id="dataNascimento" pattern="dd/MM/yyyy" mask="true" label="Data de Nascimento"/>
+
+    <p:selectOneMenu id="sexo" label="Sexo">
+        <f:selectItem itemLabel="Selecione..." itemValue="#{null}" noSelectionOption="true"/>
+        <f:selectItem itemLabel="Masculino" itemValue="MASCULINO"/>
+        <f:selectItem itemLabel="Feminino" itemValue="FEMININO"/>
+        <f:selectItem itemLabel="Indefinido" itemValue="INDEFINIDO"/>
+    </p:selectOneMenu>    <p:inputText id="especialidade" value="#{}"/>
+
+    <p:inputText id="convenio" value="#{}"/>
 
 
 </ui:composition>
