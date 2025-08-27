@@ -6,13 +6,13 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.5.4</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/>
 	</parent>
 	<groupId>com.caravela.clinicaplus</groupId>
 	<artifactId>ClinicaPlus</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>ClinicaPlus</name>
-	<description>Sistema de gerenciamento de clinicas</description>
+	<description>Sistema de gestão de clinicas</description>
 	<url/>
 	<licenses>
 		<license/>
