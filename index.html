@@ -1,0 +1,708 @@
+Com certeza\! Ampliei significativamente todas as seções, com foco especial no **Modelo de Dados**, para fornecer uma documentação muito mais rica e detalhada, conforme solicitado.
+
+Abaixo está a versão expandida do seu documento HTML.
+
+-----
+
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentação Detalhada - ClinicManager Pro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .content-section { display: none; }
+        .content-section.active { display: block; }
+        .tech-tab-content { display: none; }
+        .tech-tab-content.active { display: block; }
+        .nav-link.active { background-color: #0ea5e9; color: #ffffff; }
+        .tech-tab.active { border-color: #0ea5e9; color: #0ea5e9; }
+        .er-card { transition: all 0.2s ease-in-out; }
+        .er-card.highlight { border-color: #0ea5e9; box-shadow: 0 0 15px rgba(14, 165, 233, 0.5); transform: scale(1.05); }
+        .er-line { transition: all 0.2s ease-in-out; }
+        .er-line.highlight { stroke: #0ea5e9; stroke-width: 3; }
+        .tooltip {
+            display: none; position: absolute;
+            background-color: #1f2937; color: white;
+            padding: 8px 12px; border-radius: 6px;
+            font-size: 12px; z-index: 10;
+            white-space: pre-wrap; width: 280px;
+            bottom: 105%; left: 50%;
+            transform: translateX(-50%);
+            pointer-events: none;
+        }
+        .arch-box:hover .tooltip { display: block; }
+        .flow-step {
+            background-color: #e2e8f0; padding: 12px 20px;
+            border-radius: 8px; text-align: center;
+            font-weight: 500; color: #334155;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .flow-arrow {
+            font-size: 2rem; color: #94a3b8;
+            text-align: center; margin: 8px 0;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <div class="flex min-h-screen">
+        <aside class="w-72 bg-slate-800 text-white p-4 flex-shrink-0 flex flex-col">
+            <h1 class="text-2xl font-bold text-sky-400 mb-8">ClinicManager Pro</h1>
+            <nav class="flex flex-col space-y-2">
+                <a href="#overview" class="nav-link p-3 rounded-lg hover:bg-slate-700 transition-colors duration-200">Visão Geral</a>
+                <a href="#architecture" class="nav-link p-3 rounded-lg hover:bg-slate-700 transition-colors duration-200">Arquitetura</a>
+                <a href="#technologies" class="nav-link p-3 rounded-lg hover:bg-slate-700 transition-colors duration-200">Tecnologias</a>
+                <a href="#data-model" class="nav-link p-3 rounded-lg hover:bg-slate-700 transition-colors duration-200">Modelo de Dados</a>
+                <a href="#user-flows" class="nav-link p-3 rounded-lg hover:bg-slate-700 transition-colors duration-200">Fluxos de Processo</a>
+                <a href="#development-plan" class="nav-link p-3 rounded-lg hover:bg-slate-700 transition-colors duration-200">Plano de Desenvolvimento</a>
+            </nav>
+            <div class="mt-auto text-xs text-slate-400">
+                <p>&copy; 2025 ClinicManager Pro</p>
+                <p>Documentação Técnica Detalhada</p>
+            </div>
+        </aside>
+
+        <main class="flex-1 p-6 sm:p-8 lg:p-10 overflow-y-auto">
+
+            <section id="overview" class="content-section">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">Visão Geral do Sistema</h2>
+                <p class="text-slate-600 mb-8">O "ClinicManager Pro" é um sistema web integrado e robusto, projetado para a gestão completa de clínicas médicas. A plataforma visa centralizar informações, automatizar processos, reduzir erros operacionais e melhorar a comunicação entre a equipe médica, administrativa e os pacientes, resultando em maior eficiência e qualidade no atendimento.</p>
+                
+                <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200 mb-8">
+                    <h3 class="text-xl font-bold text-slate-800 mb-3">Objetivos e Público-Alvo</h3>
+                     <ul class="space-y-2 text-slate-700 list-disc list-inside">
+                        <li><strong>Objetivo Principal:</strong> Centralizar e otimizar a gestão de clínicas, abrangendo desde a jornada do paciente até a administração financeira e estratégica do negócio.</li>
+                        <li><strong>Objetivos Secundários:</strong> Reduzir o tempo gasto em tarefas administrativas, minimizar a taxa de não comparecimento (no-show) através de lembretes, fornecer dados para decisões estratégicas e garantir a segurança e a conformidade dos dados dos pacientes (LGPD).</li>
+                        <li><strong>Público-Alvo:</strong> Clínicas médicas de pequeno e médio porte, consultórios particulares, médicos autônomos e policlínicas que buscam modernizar sua gestão e otimizar seus processos internos.</li>
+                    </ul>
+                </div>
+
+                <h3 class="text-2xl font-bold text-slate-900 mb-4">Módulos Detalhados</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                        <h3 class="text-xl font-bold text-sky-600 mb-3">Módulo de Agendamento</h3>
+                        <ul class="space-y-2 text-slate-700 list-disc list-inside">
+                            <li>Gestão de agendas por profissional e por sala</li>
+                            <li>Visualização diária, semanal e mensal com cores por status</li>
+                            <li>Bloqueio e liberação de horários em lote</li>
+                            <li>Agendamento recorrente para tratamentos</li>
+                            <li>Lista de espera para horários disputados</li>
+                            <li>Controle de acesso por perfil (secretária, médico)</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                        <h3 class="text-xl font-bold text-sky-600 mb-3">Módulo de Prontuário</h3>
+                        <ul class="space-y-2 text-slate-700 list-disc list-inside">
+                            <li>Prontuário Eletrônico do Paciente (PEP) centralizado</li>
+                            <li>Registro de consultas, exames e laudos</li>
+                            <li>Histórico clínico completo e cronológico</li>
+                            <li>Modelos de anamnese personalizáveis por especialidade</li>
+                            <li>Prescrição digital com assinatura eletrônica</li>
+                            <li>Anexo de documentos e imagens ao prontuário</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                        <h3 class="text-xl font-bold text-sky-600 mb-3">Módulo Financeiro</h3>
+                        <ul class="space-y-2 text-slate-700 list-disc list-inside">
+                            <li>Controle de contas a pagar e a receber</li>
+                            <li>Faturamento de consultas e procedimentos (TUSS)</li>
+                            <li>Geração e controle de faturas para convênios</li>
+                            <li>Repasse médico e controle de comissões</li>
+                            <li>Integração com gateways de pagamento (Cartão, PIX)</li>
+                            <li>Fluxo de caixa e fechamento diário</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                        <h3 class="text-xl font-bold text-sky-600 mb-3">Módulo de Comunicação</h3>
+                        <ul class="space-y-2 text-slate-700 list-disc list-inside">
+                            <li>Chat interno seguro para a equipe</li>
+                            <li>Confirmação de consulta automatizada via SMS/WhatsApp</li>
+                            <li>Lembretes de agendamento e de retorno</li>
+                             <li>Canal de comunicação entre médico e paciente (portal)</li>
+                            <li>Envio de pesquisas de satisfação pós-consulta</li>
+                        </ul>
+                    </div>
+                     <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                        <h3 class="text-xl font-bold text-sky-600 mb-3">Portal do Paciente</h3>
+                        <ul class="space-y-2 text-slate-700 list-disc list-inside">
+                            <li>Agendamento e reagendamento online de consultas</li>
+                            <li>Acesso a resultados de exames e laudos</li>
+                            <li>Visualização de histórico de consultas e prescrições</li>
+                            <li>Preenchimento de ficha cadastral e anamnese pré-consulta</li>
+                            <li>Pagamento online de faturas e visualização de extrato</li>
+                        </ul>
+                    </div>
+                     <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                        <h3 class="text-xl font-bold text-sky-600 mb-3">Módulo de Relatórios</h3>
+                        <ul class="space-y-2 text-slate-700 list-disc list-inside">
+                            <li>Relatórios de produtividade médica e por procedimento</li>
+                            <li>Dashboards financeiros com KPIs (faturamento, inadimplência)</li>
+                            <li>Análise de agendamentos (taxa de ocupação, no-show)</li>
+                             <li>Relatório demográfico de pacientes (idade, gênero, local)</li>
+                            <li>Exportação de dados em PDF, Excel e CSV</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mt-12 bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                    <h3 class="text-xl font-bold text-slate-900 mb-4 text-center">Distribuição do Esforço de Desenvolvimento (MVP)</h3>
+                    <p class="text-slate-600 mb-6 text-center">Este gráfico ilustra a alocação de recursos estimada para cada fase do plano de desenvolvimento inicial. O foco principal está na construção do backend e do módulo de agendamentos, que formam o núcleo da aplicação.</p>
+                    <div class="chart-container relative w-full max-w-lg mx-auto h-80 md:h-96">
+                        <canvas id="devPlanChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section id="architecture" class="content-section">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">Arquitetura do Sistema</h2>
+                <p class="text-slate-600 mb-8">A arquitetura adota um modelo monolítico modularizado com Spring Boot, servindo uma interface rica com JavaServer Faces (JSF) e PrimeFaces. As APIs REST são expostas para o Portal do Paciente e futuras integrações, garantindo desacoplamento e escalabilidade. Passe o mouse sobre os componentes para ver mais detalhes.</p>
+                <div class="bg-white p-6 rounded-xl shadow-lg border border-slate-200 overflow-x-auto mb-8">
+                    <div class="flex flex-col items-center space-y-4 min-w-[800px]">
+                        <div class="flex space-x-4">
+                            <div class="arch-box relative bg-sky-100 text-sky-800 p-4 rounded-lg shadow-sm text-center w-56">
+                                <h4 class="font-semibold">Painel Administrativo</h4>
+                                <p class="text-xs">(JSF + PrimeFaces)</p>
+                                <div class="tooltip"><strong>Descrição:</strong> Interface web rica para a equipe da clínica (médicos, secretárias, administradores), renderizada no servidor com JSF e componentes PrimeFaces.<br><strong>Justificativa:</strong> Alta produtividade no desenvolvimento de telas de gestão complexas, como agendas e data tables, aproveitando o vasto conjunto de componentes prontos do PrimeFaces.</div>
+                            </div>
+                            <div class="arch-box relative bg-emerald-100 text-emerald-800 p-4 rounded-lg shadow-sm text-center w-56">
+                                <h4 class="font-semibold">Portal do Paciente</h4>
+                                <p class="text-xs">(Web/SPA via APIs)</p>
+                                <div class="tooltip"><strong>Descrição:</strong> Aplicação web para pacientes, que consome as APIs REST expostas pelo backend para agendamento, visualização de prontuários e pagamentos.<br><strong>Justificativa:</strong> Desacoplamento total do backend, permitindo uma experiência de usuário moderna e fluida (SPA) e facilitando a criação de um futuro aplicativo mobile que consuma as mesmas APIs.</div>
+                            </div>
+                        </div>
+                        <div class="text-3xl text-slate-400">&#x2195;</div>
+                        <div class="arch-box relative bg-slate-200 text-slate-800 p-4 rounded-lg shadow-sm text-center w-80">
+                            <h4 class="font-semibold">Gateway de API & Servidor Web</h4>
+                            <p class="text-xs">(Spring Cloud Gateway / Nginx)</p>
+                            <div class="tooltip"><strong>Descrição:</strong> Ponto de entrada único que serve as páginas JSF e roteia as requisições do Portal do Paciente para as APIs REST apropriadas.<br><strong>Responsabilidades:</strong> Roteamento, balanceamento de carga, terminação SSL e, opcionalmente, agregação de respostas.</div>
+                        </div>
+                        <div class="text-3xl text-slate-400">&#x2193;</div>
+                        <div class="arch-box relative bg-amber-100 text-amber-800 p-6 rounded-lg shadow-md text-center w-96">
+                            <h4 class="font-semibold">Aplicação Core (Spring Boot)</h4>
+                            <p class="text-xs">(Módulos: Agendamento, Prontuário, Financeiro)</p>
+                            <div class="tooltip"><strong>Descrição:</strong> O coração da lógica de negócio, organizado em módulos Spring. Contém os Controllers JSF (ManagedBeans), Serviços (`@Service`), Repositórios (`@Repository`) e os endpoints da API REST (`@RestController`).<br><strong>Tecnologias:</strong> Spring MVC, Spring Data JPA, Spring Security, Spring Beans.</div>
+                        </div>
+                        <div class="text-3xl text-slate-400">&#x2195;</div>
+                        <div class="flex space-x-4">
+                            <div class="arch-box relative bg-indigo-100 text-indigo-800 p-4 rounded-lg shadow-sm text-center w-56">
+                                <h4 class="font-semibold">Banco de Dados</h4>
+                                <p class="text-xs">(PostgreSQL)</p>
+                                <div class="tooltip"><strong>Descrição:</strong> Armazenamento persistente dos dados. PostgreSQL é uma escolha robusta, de código aberto e escalável para dados estruturados e relacionais da clínica.<br><strong>Features Utilizadas:</strong> Transações ACID, tipos de dados JSONB para campos flexíveis, e forte conformidade com o padrão SQL.</div>
+                            </div>
+                            <div class="arch-box relative bg-rose-100 text-rose-800 p-4 rounded-lg shadow-sm text-center w-56">
+                                <h4 class="font-semibold">Serviços Externos</h4>
+                                <p class="text-xs">(Gateway de Pagamento, SMS, Convênios)</p>
+                                <div class="tooltip"><strong>Descrição:</strong> Integrações com serviços de terceiros via API REST ou SOAP.<br><strong>Exemplos:</strong> Stripe/PagSeguro para pagamentos, Twilio/Zenvia para notificações via SMS/WhatsApp, e futuramente, APIs de convênios médicos para validação de elegibilidade.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                    <h3 class="text-xl font-bold text-slate-800 mb-3">Justificativa da Arquitetura</h3>
+                     <p class="text-slate-700">A escolha de um <strong>monólito modularizado</strong> com Spring Boot para o backend é estratégica. Ela oferece um desenvolvimento inicial rápido e coeso, ideal para as necessidades de uma clínica, onde os domínios de negócio (agendamento, financeiro, prontuário) são altamente interligados. A separação em módulos lógicos dentro do mesmo projeto (`@ComponentScan`) facilita a organização do código, a manutenção e abre caminho para uma futura e gradual migração para microsserviços, caso a complexidade e a escala do sistema exijam.</p>
+                     <p class="mt-2 text-slate-700">Para o frontend, a abordagem é dupla: <strong>JSF com PrimeFaces</strong> para o painel administrativo e <strong>APIs REST para um Portal do Paciente</strong> desacoplado. Esta separação reconhece que as necessidades de UX/UI são diferentes para cada público. A equipe interna se beneficia da alta produtividade e dos componentes de dados complexos do PrimeFaces, enquanto os pacientes usufruem de uma experiência mais fluida e moderna, típica de uma Single Page Application (SPA), que pode ser desenvolvida com tecnologias como React ou Angular.</p>
+                </div>
+            </section>
+
+            <section id="technologies" class="content-section">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">Tecnologias Utilizadas com Justificativas</h2>
+                <p class="text-slate-600 mb-8">A seleção de tecnologias visa construir uma aplicação robusta, segura e de alta performance, utilizando o ecossistema Java com Spring Boot no backend e JSF para a interface administrativa.</p>
+                <div class="bg-white p-2 rounded-xl shadow-md border border-slate-200">
+                    <div class="flex border-b border-slate-200">
+                        <button class="tech-tab flex-1 p-4 font-semibold text-slate-600 border-b-2 border-transparent hover:text-sky-500" data-tab="backend">Backend</button>
+                        <button class="tech-tab flex-1 p-4 font-semibold text-slate-600 border-b-2 border-transparent hover:text-sky-500" data-tab="frontend">Frontend (Painel Admin)</button>
+                        <button class="tech-tab flex-1 p-4 font-semibold text-slate-600 border-b-2 border-transparent hover:text-sky-500" data-tab="infra">Banco de Dados & Infra</button>
+                    </div>
+                    <div class="p-6">
+                        <div id="backend" class="tech-tab-content grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                            <div class="p-4 bg-slate-100 rounded-lg"><strong>Linguagem:</strong> Java 17+ (LTS)<br><small class="text-slate-500">Garante estabilidade, segurança e acesso a recursos modernos.</small></div>
+                            <div class="p-4 bg-slate-100 rounded-lg"><strong>Framework:</strong> Spring Boot 3.x<br><small class="text-slate-500">Acelera o desenvolvimento com auto-configuração e ecossistema robusto.</small></div>
+                            <div class="p-4 bg-slate-100 rounded-lg"><strong>ORM:</strong> Spring Data JPA / Hibernate<br><small class="text-slate-500">Abstrai e simplifica a persistência de dados relacionais.</small></div>
+                            <div class="p-4 bg-slate-100 rounded-lg"><strong>Segurança:</strong> Spring Security<br><small class="text-slate-500">Framework completo para autenticação e autorização.</small></div>
+                            <div class="p-4 bg-slate-100 rounded-lg"><strong>Build:</strong> Maven<br><small class="text-slate-500">Gerenciamento de dependências e ciclo de vida do build padronizado.</small></div>
+                            <div class="p-4 bg-slate-100 rounded-lg"><strong>Testes:</strong> JUnit 5, Mockito<br><small class="text-slate-500">Padrão da indústria para testes unitários e de integração em Java.</small></div>
+                            <div class="p-4 bg-slate-100 rounded-lg"><strong>Mapeamento DTO:</strong> MapStruct<br><small class="text-slate-500">Gera conversores de DTO em tempo de compilação, evitando boilerplate.</small></div>
+                        </div>
+                        <div id="frontend" class="tech-tab-content grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                            <div class="p-4 bg-slate-100 rounded-lg"><strong>Framework UI:</strong> Jakarta EE (JSF 4.x)<br><small class="text-slate-500">Framework component-based padrão para aplicações web Java.</small></div>
+                            <div class="p-4 bg-slate-100 rounded-lg"><strong>Biblioteca de Componentes:</strong> PrimeFaces 12+<br><small class="text-slate-500">Vasta gama de componentes UI ricos que aceleram o dev.</small></div>
+                            <div class="p-4 bg-slate-100 rounded-lg"><strong>Linguagem de Template:</strong> XHTML<br><small class="text-slate-500">Linguagem de marcação para as views JSF.</small></div>
+                            <div class="p-4 bg-slate-100 rounded-lg"><strong>Estilo:</strong> SASS / CSS 3<br><small class="text-slate-500">Pré-processador CSS para estilos mais organizados e reutilizáveis.</small></div>
+                            <div class="p-4 bg-slate-100 rounded-lg"><strong>Beans Gerenciados:</strong> CDI Beans<br><small class="text-slate-500">Injeção de dependência e controle do ciclo de vida dos controllers.</small></div>
+                            <div class="p-4 bg-slate-100 rounded-lg"><strong>Portal do Paciente:</strong> React.js<br><small class="text-slate-500">Sugestão para uma SPA moderna, reativa e com excelente UX.</small></div>
+                        </div>
+                        <div id="infra" class="tech-tab-content grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                            <div class="p-4 bg-slate-100 rounded-lg"><strong>SGBD:</strong> PostgreSQL 14+<br><small class="text-slate-500">Banco de dados relacional open-source poderoso e confiável.</small></div>
+                            <div class="p-4 bg-slate-100 rounded-lg"><strong>Migração de Schema:</strong> Flyway<br><small class="text-slate-500">Versionamento e controle de alterações no schema do banco.</small></div>
+                            <div class="p-4 bg-slate-100 rounded-lg"><strong>Contêineres:</strong> Docker<br><small class="text-slate-500">Padroniza e isola o ambiente da aplicação para dev e prod.</small></div>
+                            <div class="p-4 bg-slate-100 rounded-lg"><strong>Cloud:</strong> AWS / GCP / Azure<br><small class="text-slate-500">Provedores de nuvem líderes com serviços gerenciados escaláveis.</small></div>
+                            <div class="p-4 bg-slate-100 rounded-lg"><strong>CI/CD:</strong> GitHub Actions / Jenkins<br><small class="text-slate-500">Automação de build, testes e deploy da aplicação.</small></div>
+                            <div class="p-4 bg-slate-100 rounded-lg"><strong>Versionamento:</strong> Git / GitHub<br><small class="text-slate-500">Controle de versão distribuído, padrão de mercado.</small></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="data-model" class="content-section">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">Modelo de Dados Detalhado e Interativo</h2>
+                <p class="text-slate-600 mb-8">Este é um modelo de entidade-relacionamento expandido para o sistema da clínica. Ele inclui entidades para gerenciar pacientes, profissionais, agendamentos, prontuários, faturamento e convênios. <strong>Clique em uma entidade</strong> para destacar suas conexões diretas.</p>
+                <div class="bg-white p-6 rounded-xl shadow-lg border border-slate-200 relative h-[850px] overflow-auto">
+                    <svg id="er-svg" class="absolute top-0 left-0 w-full h-full" style="pointer-events: none;"></svg>
+                    <div id="er-container" class="relative min-w-[1400px] min-h-[820px]">
+                        <div id="er-convenio" class="er-card absolute border-2 border-slate-300 p-3 rounded-lg bg-white shadow-sm w-48" style="top: 20px; left: 20px;">
+                            <h4 class="font-bold text-center">Convenio</h4>
+                            <p class="text-xs">id (PK)</p>
+                            <p class="text-xs">nome</p>
+                            <p class="text-xs">cnpj</p>
+                            <p class="text-xs">registro_ans</p>
+                        </div>
+                        <div id="er-paciente" class="er-card absolute border-2 border-slate-300 p-3 rounded-lg bg-white shadow-sm w-48" style="top: 200px; left: 20px;">
+                            <h4 class="font-bold text-center">Paciente</h4>
+                            <p class="text-xs">id (PK)</p>
+                            <p class="text-xs">nome_completo</p>
+                            <p class="text-xs">cpf</p>
+                            <p class="text-xs">data_nascimento</p>
+                            <p class="text-xs">sexo</p>
+                            <p class="text-xs">telefone</p>
+                            <p class="text-xs">endereco</p>
+                            <p class="text-xs">usuario_id (FK)</p>
+                            <p class="text-xs">convenio_id (FK)</p>
+                        </div>
+                         <div id="er-usuario" class="er-card absolute border-2 border-slate-300 p-3 rounded-lg bg-white shadow-sm w-48" style="top: 450px; left: 20px;">
+                            <h4 class="font-bold text-center">Usuario</h4>
+                            <p class="text-xs">id (PK)</p>
+                            <p class="text-xs">email</p>
+                            <p class="text-xs">senha_hash</p>
+                            <p class="text-xs">perfil (Enum)</p>
+                            <p class="text-xs">ativo</p>
+                        </div>
+                         <div id="er-medico" class="er-card absolute border-2 border-slate-300 p-3 rounded-lg bg-white shadow-sm w-48" style="top: 650px; left: 20px;">
+                            <h4 class="font-bold text-center">Medico</h4>
+                            <p class="text-xs">id (PK)</p>
+                            <p class="text-xs">nome_completo</p>
+                            <p class="text-xs">crm</p>
+                            <p class="text-xs">especialidade</p>
+                            <p class="text-xs">usuario_id (FK)</p>
+                        </div>
+
+                         <div id="er-agendaconfig" class="er-card absolute border-2 border-slate-300 p-3 rounded-lg bg-white shadow-sm w-48" style="top: 650px; left: 320px;">
+                            <h4 class="font-bold text-center">AgendaConfig</h4>
+                            <p class="text-xs">id (PK)</p>
+                            <p class="text-xs">medico_id (FK)</p>
+                            <p class="text-xs">dia_semana</p>
+                            <p class="text-xs">hora_inicio</p>
+                            <p class="text-xs">hora_fim</p>
+                        </div>
+                        <div id="er-agendamento" class="er-card absolute border-2 border-slate-300 p-3 rounded-lg bg-white shadow-sm w-48" style="top: 200px; left: 320px;">
+                            <h4 class="font-bold text-center">Agendamento</h4>
+                            <p class="text-xs">id (PK)</p>
+                            <p class="text-xs">data_hora_inicio</p>
+                            <p class="text-xs">data_hora_fim</p>
+                            <p class="text-xs">status (Enum)</p>
+                            <p class="text-xs">paciente_id (FK)</p>
+                            <p class="text-xs">medico_id (FK)</p>
+                            <p class="text-xs">convenio_id (FK)</p>
+                        </div>
+
+                        <div id="er-consulta" class="er-card absolute border-2 border-slate-300 p-3 rounded-lg bg-white shadow-sm w-48" style="top: 200px; left: 620px;">
+                            <h4 class="font-bold text-center">Consulta</h4>
+                            <p class="text-xs">id (PK)</p>
+                            <p class="text-xs">agendamento_id (FK)</p>
+                            <p class="text-xs">tipo (Primeira, Retorno)</p>
+                            <p class="text-xs">status (Realizada)</p>
+                        </div>
+
+                        <div id="er-prontuario" class="er-card absolute border-2 border-slate-300 p-3 rounded-lg bg-white shadow-sm w-48" style="top: 50px; left: 920px;">
+                            <h4 class="font-bold text-center">Prontuario</h4>
+                            <p class="text-xs">id (PK)</p>
+                            <p class="text-xs">consulta_id (FK)</p>
+                            <p class="text-xs">anamnese</p>
+                            <p class="text-xs">diagnostico_cid</p>
+                            <p class="text-xs">prescricao</p>
+                            <p class="text-xs">data_registro</p>
+                        </div>
+                         <div id="er-anexoprontuario" class="er-card absolute border-2 border-slate-300 p-3 rounded-lg bg-white shadow-sm w-48" style="top: 250px; left: 920px;">
+                            <h4 class="font-bold text-center">AnexoProntuario</h4>
+                            <p class="text-xs">id (PK)</p>
+                            <p class="text-xs">prontuario_id (FK)</p>
+                            <p class="text-xs">nome_arquivo</p>
+                            <p class="text-xs">url_storage</p>
+                            <p class="text-xs">tipo_mime</p>
+                        </div>
+                        <div id="er-fatura" class="er-card absolute border-2 border-slate-300 p-3 rounded-lg bg-white shadow-sm w-48" style="top: 450px; left: 920px;">
+                            <h4 class="font-bold text-center">Fatura</h4>
+                            <p class="text-xs">id (PK)</p>
+                            <p class="text-xs">paciente_id (FK)</p>
+                            <p class="text-xs">consulta_id (FK)</p>
+                            <p class="text-xs">valor_total</p>
+                            <p class="text-xs">data_vencimento</p>
+                            <p class="text-xs">status_pagamento</p>
+                        </div>
+                        <div id="er-pagamento" class="er-card absolute border-2 border-slate-300 p-3 rounded-lg bg-white shadow-sm w-48" style="top: 650px; left: 920px;">
+                            <h4 class="font-bold text-center">Pagamento</h4>
+                            <p class="text-xs">id (PK)</p>
+                            <p class="text-xs">fatura_id (FK)</p>
+                            <p class="text-xs">data_pagamento</p>
+                            <p class="text-xs">valor_pago</p>
+                            <p class="text-xs">metodo (Enum)</p>
+                            <p class="text-xs">id_transacao_gw</p>
+                        </div>
+
+                        <div id="er-procedimento" class="er-card absolute border-2 border-slate-300 p-3 rounded-lg bg-white shadow-sm w-48" style="top: 450px; left: 1220px;">
+                            <h4 class="font-bold text-center">Procedimento</h4>
+                            <p class="text-xs">id (PK)</p>
+                            <p class="text-xs">codigo_tuss</p>
+                            <p class="text-xs">descricao</p>
+                            <p class="text-xs">valor_base</p>
+                        </div>
+                        <div id="er-faturaprocedimento" class="er-card absolute border-2 border-slate-300 p-3 rounded-lg bg-white shadow-sm w-48" style="top: 650px; left: 1220px;">
+                            <h4 class="font-bold text-center">FaturaProcedimento</h4>
+                            <p class="text-xs">fatura_id (PK, FK)</p>
+                            <p class="text-xs">procedimento_id (PK, FK)</p>
+                            <p class="text-xs">quantidade</p>
+                            <p class="text-xs">valor_unitario</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="user-flows" class="content-section">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">Fluxos de Processo Detalhados</h2>
+                <p class="text-slate-600 mb-8">Cada fluxo é decomposto em passos, ilustrando a interação entre os usuários (pacientes, médicos, administradores) e o sistema ClinicManager Pro.</p>
+
+                <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200 mb-8">
+                    <h3 class="text-xl font-bold text-slate-900 mb-4 text-center">Fluxo de Agendamento de Consulta (via Portal do Paciente)</h3>
+                    <div class="flex flex-col items-center space-y-4">
+                        <div class="flow-step">1. Paciente acessa o Portal do Paciente e realiza Login</div>
+                        <div class="flow-arrow">&#x2193;</div>
+                        <div class="flow-step">2. No dashboard, clica em "Agendar Nova Consulta"</div>
+                        <div class="flow-arrow">&#x2193;</div>
+                        <div class="flow-step">3. Sistema apresenta filtros: Especialidade, Médico e Convênio</div>
+                        <div class="flow-arrow">&#x2193;</div>
+                        <div class="flow-step">4. Paciente seleciona os filtros. Sistema exibe a agenda com os horários disponíveis que atendem aos critérios</div>
+                        <div class="flow-arrow">&#x2193;</div>
+                        <div class="flow-step">5. Paciente clica em um horário desejado</div>
+                        <div class="flow-arrow">&#x2193;</div>
+                        <div class="flow-step">6. Sistema exibe tela de confirmação com detalhes (Médico, Data, Hora, Local, Valor/Convênio)</div>
+                        <div class="flow-arrow">&#x2193;</div>
+                        <div class="flow-step">7. Paciente confirma. Frontend envia requisição para a API de Agendamento</div>
+                        <div class="flow-arrow">&#x2193;</div>
+                        <div class="flow-step">8. Backend (Spring) realiza uma dupla verificação de disponibilidade para evitar concorrência</div>
+                        <div class="flow-arrow">&#x2193;</div>
+                        <div class="flow-step">9. Backend cria o registro na tabela `Agendamento` com status "Confirmado"</div>
+                        <div class="flow-arrow">&#x2193;</div>
+                        <div class="flow-step">10. Sistema dispara um job para enviar notificação de confirmação (E-mail/SMS) para o paciente</div>
+                         <div class="flow-arrow">&#x2193;</div>
+                        <div class="flow-step">11. Agendamento aparece no painel do paciente e na agenda do médico em tempo real</div>
+                    </div>
+                </div>
+
+                 <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200 mb-8">
+                    <h3 class="text-xl font-bold text-slate-900 mb-4 text-center">Fluxo de Atendimento Médico (via Painel Administrativo)</h3>
+                    <div class="flex flex-col items-center space-y-4">
+                        <div class="flow-step">1. Médico realiza Login no sistema</div>
+                        <div class="flow-arrow">&#x2193;</div>
+                        <div class="flow-step">2. Visualiza seu Dashboard com a agenda do dia (componente PrimeFaces `p:schedule`)</div>
+                        <div class="flow-arrow">&#x2193;</div>
+                        <div class="flow-step">3. Recepcionista altera o status do agendamento para "Aguardando Atendimento" quando o paciente chega</div>
+                        <div class="flow-arrow">&#x2193;</div>
+                        <div class="flow-step">4. Médico clica no agendamento do paciente para iniciar o atendimento. O status muda para "Em Atendimento"</div>
+                        <div class="flow-arrow">&#x2193;</div>
+                        <div class="flow-step">5. Sistema carrega a tela de consulta, exibindo o Prontuário Eletrônico do Paciente (PEP)</div>
+                        <div class="flow-arrow">&#x2193;</div>
+                        <div class="flow-step">6. Médico navega pelo histórico de consultas e anexos (exames)</div>
+                        <div class="flow-arrow">&#x2193;</div>
+                        <div class="flow-step">7. Preenche os campos do novo registro no prontuário: Anamnese, Diagnóstico (com busca CID-10), Prescrição, Solicitação de Exames</div>
+                        <div class="flow-arrow">&#x2193;</div>
+                        <div class="flow-step">8. Clica em "Salvar e Finalizar Consulta"</div>
+                        <div class="flow-arrow">&#x2193;</div>
+                        <div class="flow-step">9. Backend salva os dados, cria um registro na tabela `Consulta` e `Prontuario`</div>
+                        <div class="flow-arrow">&#x2193;</div>
+                        <div class="flow-step">10. O status do agendamento é alterado para "Finalizado"</div>
+                        <div class="flow-arrow">&#x2193;</div>
+                        <div class="flow-step">11. Sistema dispara um gatilho para o Módulo Financeiro criar uma `Fatura` preliminar, associada à consulta e aos procedimentos realizados</div>
+                         <div class="flow-arrow">&#x2193;</div>
+                        <div class="flow-step">12. Fim do processo de atendimento médico</div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200 mb-8">
+                    <h3 class="text-xl font-bold text-slate-900 mb-4 text-center">Fluxo de Fechamento de Caixa Diário (Administrativo)</h3>
+                    <div class="flex flex-col items-center space-y-4">
+                        <div class="flow-step">1. Usuário administrativo acessa o Módulo Financeiro e seleciona "Fechamento de Caixa"</div>
+                        <div class="flow-arrow">&#x2193;</div>
+                        <div class="flow-step">2. Sistema exibe um resumo do dia: total de faturas geradas, valores recebidos (por método de pagamento), e contas a pagar do dia</div>
+                        <div class="flow-arrow">&#x2193;</div>
+                        <div class="flow-step">3. Admin realiza a conciliação: compara os recebimentos registrados no sistema com os valores físicos (dinheiro) e extratos (cartão, PIX)</div>
+                        <div class="flow-arrow">&#x2193;</div>
+                        <div class="flow-step">4. O sistema destaca quaisquer discrepâncias encontradas para verificação manual</div>
+                        <div class="flow-arrow">&#x2193;</div>
+                        <div class="flow-step">5. Admin gera o relatório de repasse médico, que calcula as comissões com base nas consultas e procedimentos realizados por cada profissional</div>
+                        <div class="flow-arrow">&#x2193;</div>
+                        <div class="flow-step">6. Admin clica em "Confirmar e Fechar Caixa"</div>
+                        <div class="flow-arrow">&#x2193;</div>
+                        <div class="flow-step">7. Sistema realiza uma última validação e, se tudo estiver correto, marca o período como "Fechado", impedindo alterações retroativas</div>
+                        <div class="flow-arrow">&#x2193;</div>
+                        <div class="flow-step">8. Um relatório consolidado do fechamento é salvo em PDF e pode ser enviado por e-mail para os gestores</div>
+                        <div class="flow-arrow">&#x2193;</div>
+                        <div class="flow-step">9. Fim do processo de fechamento de caixa</div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="development-plan" class="content-section">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">Plano de Desenvolvimento Detalhado</h2>
+                <p class="text-slate-600 mb-8">O desenvolvimento será dividido em fases, com passos detalhados para cada etapa, garantindo uma progressão clara e focada no Produto Mínimo Viável (MVP) e futuras expansões.</p>
+
+                <div class="grid md:grid-cols-1 gap-8">
+                    <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                        <h3 class="text-xl font-bold text-slate-900 mb-3">Fase 1: Fundação do Sistema (Backend Core e Segurança)</h3>
+                        <p class="text-slate-700 mb-4"><strong>Meta:</strong> Estabelecer as fundações técnicas sólidas para todo o projeto, incluindo ambiente, estrutura, modelagem de dados essencial e um sistema de segurança robusto e funcional.</p>
+                        <ul class="space-y-2 text-slate-700 list-decimal list-inside ml-4">
+                            <li><strong>Configuração do Ambiente:</strong> Instalação e padronização das versões do JDK 17, Maven, PostgreSQL e Docker.</li>
+                            <li><strong>Inicialização do Projeto Spring Boot:</strong> Criar projeto base com dependências essenciais: Spring Web, Data JPA, Security, PostgreSQL Driver, Lombok, MapStruct e Flyway.</li>
+                            <li><strong>Modelagem de Dados Inicial:</strong> Criar as entidades JPA, DTOs e Repositórios para `Usuario`, `Paciente`, `Medico`, `Convenio` e `Perfil`.</li>
+                            <li><strong>Migração de Schema com Flyway:</strong> Criar o primeiro script de migração (V1__create_initial_tables.sql) para gerar as tabelas no banco de dados.</li>
+                            <li><strong>Implementação de Segurança:</strong> Configurar Spring Security com autenticação via e-mail/senha, hashing de senhas com BCrypt e autorização baseada em perfis (`@PreAuthorize`). Criar endpoints de login e logout.</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                        <h3 class="text-xl font-bold text-slate-900 mb-3">Fase 2: Módulo de Agendamento e Interface JSF</h3>
+                        <p class="text-slate-700 mb-4"><strong>Meta:</strong> Entregar a funcionalidade central de agendamento e a estrutura principal do painel administrativo, permitindo que a clínica comece a gerenciar suas agendas.</p>
+                        <ul class="space-y-2 text-slate-700 list-decimal list-inside ml-4">
+                             <li><strong>Backend - Lógica de Agendamento:</strong> Criar entidades `Agendamento` e `AgendaConfig`. Desenvolver `Services` para CRUD de agendamentos, verificação de disponibilidade, bloqueios e regras de negócio.</li>
+                             <li><strong>Integração JSF + Spring:</strong> Configurar a integração para que os Managed Beans (CDI) do JSF possam injetar e usar os serviços do Spring.</li>
+                             <li><strong>Frontend (JSF) - Telas CRUD:</strong> Desenvolver as telas de gestão (CRUD completo com data tables, filtros e diálogos) para Pacientes, Médicos e Convênios usando componentes PrimeFaces.</li>
+                             <li><strong>Frontend (JSF) - Componente de Agenda:</strong> Implementar a tela de agenda usando `p:schedule`, com `ScheduleModel` no backend para carregar, criar e atualizar eventos (agendamentos) de forma interativa (AJAX).</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                        <h3 class="text-xl font-bold text-slate-900 mb-3">Fase 3: Módulo de Prontuário Eletrônico e Comunicação</h3>
+                        <p class="text-slate-700 mb-4"><strong>Meta:</strong> Construir o Prontuário Eletrônico do Paciente (PEP), permitindo o registro clínico seguro, e implementar as notificações essenciais para reduzir o no-show.</p>
+                        <ul class="space-y-2 text-slate-700 list-decimal list-inside ml-4">
+                             <li><strong>Backend - Lógica de Prontuário:</strong> Criar entidades `Consulta`, `Prontuario`, `AnexoProntuario`. Desenvolver serviços para vincular consultas, registrar prontuários e gerenciar uploads de anexos para um storage (ex: S3).</li>
+                             <li><strong>Frontend (JSF) - Tela de Atendimento:</strong> Criar a tela de atendimento médico, que exibe o histórico do paciente em abas ou acordeão, e formulários para o novo registro.</li>
+                             <li><strong>Frontend (JSF) - Componentes Ricos:</strong> Utilizar `p:editor` para anamnese, `p:autoComplete` com busca CID-10 e `p:fileUpload` para anexos.</li>
+                             <li><strong>Backend - Serviço de Notificação:</strong> Criar um serviço de notificação (Email/SMS) e integrá-lo com um provedor externo (Twilio/AWS SNS).</li>
+                             <li><strong>Automação de Lembretes:</strong> Criar um `Job` agendado (`@Scheduled`) para enviar lembretes de consulta 24 horas antes do horário.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                        <h3 class="text-xl font-bold text-slate-900 mb-3">Fase 4: Módulo Financeiro e Portal do Paciente (MVP)</h3>
+                        <p class="text-slate-700 mb-4"><strong>Meta:</strong> Implementar o controle financeiro para faturamento e pagamentos, e lançar a primeira versão do Portal do Paciente, focada em agendamento e acesso a informações.</p>
+                        <ul class="space-y-2 text-slate-700 list-decimal list-inside ml-4">
+                            <li><strong>Backend - Lógica Financeira:</strong> Criar entidades `Fatura`, `Pagamento`, `Procedimento`. Desenvolver serviços para gerar faturas, registrar pagamentos e integrar com um Gateway de Pagamento via API.</li>
+                            <li><strong>Backend - APIs REST para o Portal:</strong> Criar `Controllers` REST seguros (`@RestController`) para expor as funcionalidades necessárias ao paciente (login, agendamento, ver faturas, etc.).</li>
+                            <li><strong>Frontend (JSF) - Telas Financeiras:</strong> Criar telas no painel administrativo para faturamento, contas a receber, e registro de pagamentos manuais.</li>
+                            <li><strong>Frontend - Portal do Paciente (MVP):</strong> Desenvolver uma aplicação SPA (React/Angular) que consuma as APIs REST para o fluxo completo de agendamento online e visualização de faturas.</li>
+                        </ul>
+                    </div>
+
+                     <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200">
+                        <h3 class="text-xl font-bold text-slate-900 mb-3">Fase 5: Relatórios, Otimização e Deploy</h3>
+                        <p class="text-slate-700 mb-4"><strong>Meta:</strong> Adicionar inteligência ao sistema com relatórios, otimizar a performance e preparar a aplicação para o lançamento em um ambiente de produção estável e seguro.</p>
+                        <ul class="space-y-2 text-slate-700 list-decimal list-inside ml-4">
+                            <li><strong>Backend - Módulo de Relatórios:</strong> Criar `Services` e `Repositories` com consultas JPQL/SQL complexas para agregar dados e gerar relatórios financeiros e de produtividade.</li>
+                            <li><strong>Frontend (JSF) - Dashboards:</strong> Integrar a biblioteca de gráficos do PrimeFaces (`p:chart`) para exibir KPIs e relatórios de forma visual no painel administrativo.</li>
+                            <li><strong>Otimização e Testes:</strong> Realizar testes de carga com Gatling/JMeter nos principais endpoints. Otimizar consultas lentas (uso de índices, `EXPLAIN ANALYZE`). Realizar uma varredura de segurança.</li>
+                             <li><strong>CI/CD:</strong> Configurar um pipeline no GitHub Actions para compilar, testar e empacotar a aplicação (JAR/WAR) automaticamente a cada push na branch principal.</li>
+                            <li><strong>Deploy:</strong> Criar um `Dockerfile` e um `docker-compose.yml` para orquestrar a aplicação e o banco de dados. Realizar o deploy em um provedor de nuvem (ex: AWS Elastic Beanstalk, GCP App Engine) com banco de dados gerenciado (RDS, Cloud SQL).</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const contentSections = document.querySelectorAll('.content-section');
+            const techTabs = document.querySelectorAll('.tech-tab');
+            const erCards = document.querySelectorAll('.er-card');
+            const erSvg = document.getElementById('er-svg');
+            const erContainer = document.getElementById('er-container');
+
+            function showSection(id) {
+                contentSections.forEach(section => section.classList.remove('active'));
+                document.getElementById(id)?.classList.add('active');
+                navLinks.forEach(link => link.classList.remove('active'));
+                document.querySelector(`.nav-link[href="#${id}"]`)?.classList.add('active');
+            }
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('href').substring(1);
+                    showSection(targetId);
+                    window.scrollTo(0, 0);
+                });
+            });
+            
+            function showTechTab(tabId) {
+                techTabs.forEach(tab => tab.classList.remove('active'));
+                document.querySelector(`.tech-tab[data-tab="${tabId}"]`)?.classList.add('active');
+                
+                document.querySelectorAll('.tech-tab-content').forEach(content => content.classList.remove('active'));
+                document.getElementById(tabId)?.classList.add('active');
+            }
+
+            techTabs.forEach(tab => {
+                tab.addEventListener('click', () => showTechTab(tab.dataset.tab));
+            });
+
+            const erRelationships = {
+                'er-convenio': ['er-paciente', 'er-agendamento'],
+                'er-paciente': ['er-convenio', 'er-usuario', 'er-agendamento', 'er-fatura'],
+                'er-usuario': ['er-paciente', 'er-medico'],
+                'er-medico': ['er-usuario', 'er-agendaconfig', 'er-agendamento'],
+                'er-agendaconfig': ['er-medico'],
+                'er-agendamento': ['er-paciente', 'er-medico', 'er-convenio', 'er-consulta'],
+                'er-consulta': ['er-agendamento', 'er-prontuario', 'er-fatura'],
+                'er-prontuario': ['er-consulta', 'er-anexoprontuario'],
+                'er-anexoprontuario': ['er-prontuario'],
+                'er-fatura': ['er-paciente', 'er-consulta', 'er-pagamento', 'er-faturaprocedimento'],
+                'er-pagamento': ['er-fatura'],
+                'er-procedimento': ['er-faturaprocedimento'],
+                'er-faturaprocedimento': ['er-fatura', 'er-procedimento']
+            };
+
+            function getCardCenter(card) {
+                if (!card) return null;
+                const containerRect = erContainer.getBoundingClientRect();
+                const cardRect = card.getBoundingClientRect();
+                return {
+                    x: cardRect.left - containerRect.left + cardRect.width / 2 + erContainer.scrollLeft,
+                    y: cardRect.top - containerRect.top + cardRect.height / 2 + erContainer.scrollTop
+                };
+            }
+
+            function drawLine(fromCardId, toCardId, highlight = false) {
+                const fromCard = document.getElementById(fromCardId);
+                const toCard = document.getElementById(toCardId);
+                const p1 = getCardCenter(fromCard);
+                const p2 = getCardCenter(toCard);
+                if (!p1 || !p2) return;
+                
+                const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                line.setAttribute('x1', p1.x);
+                line.setAttribute('y1', p1.y);
+                line.setAttribute('x2', p2.x);
+                line.setAttribute('y2', p2.y);
+                line.setAttribute('stroke', highlight ? '#0ea5e9' : '#cbd5e1');
+                line.setAttribute('stroke-width', highlight ? '3' : '2');
+                line.classList.add('er-line');
+                if (highlight) line.classList.add('highlight');
+                erSvg.appendChild(line);
+            }
+
+            function drawAllLines(force = false) {
+                if(document.querySelector('.er-line') && !force) return;
+                erSvg.innerHTML = '';
+                const drawn = new Set();
+                for (const from in erRelationships) {
+                    erRelationships[from].forEach(to => {
+                        const pair = [from, to].sort().join('-');
+                        if (!drawn.has(pair)) {
+                            drawLine(from, to);
+                            drawn.add(pair);
+                        }
+                    });
+                }
+            }
+
+            function highlightRelationships(clickedCardId) {
+                erCards.forEach(card => card.classList.remove('highlight'));
+                erSvg.innerHTML = ''; // Clear all lines
+
+                // Redraw all lines in gray first
+                drawAllLines(true);
+                erSvg.querySelectorAll('.er-line').forEach(l => {
+                    l.setAttribute('stroke', '#e2e8f0');
+                    l.setAttribute('stroke-width', '1');
+                });
+                
+                const clickedCard = document.getElementById(clickedCardId);
+                if (clickedCard) clickedCard.classList.add('highlight');
+
+                if (erRelationships[clickedCardId]) {
+                    erRelationships[clickedCardId].forEach(relatedCardId => {
+                        document.getElementById(relatedCardId)?.classList.add('highlight');
+                        drawLine(clickedCardId, relatedCardId, true);
+                    });
+                }
+            }
+            
+            erCards.forEach(card => {
+                card.addEventListener('click', (e) => {
+                     e.stopPropagation();
+                     highlightRelationships(card.id)
+                });
+            });
+            document.getElementById('er-container').addEventListener('click', () => {
+                 erCards.forEach(card => card.classList.remove('highlight'));
+                 drawAllLines(true);
+            });
+
+
+            const devPlanData = {
+                labels: ['Fase 1: Fundação & Segurança', 'Fase 2: Agendamento & JSF', 'Fase 3: Prontuário & Notificações', 'Fase 4: Financeiro & Portal', 'Fase 5: Relatórios & Deploy'],
+                datasets: [{
+                    label: 'Esforço de Desenvolvimento (%)',
+                    data: [25, 30, 20, 15, 10],
+                    backgroundColor: ['#0ea5e9', '#38bdf8', '#7dd3fc', '#bae6fd', '#e0f2fe'],
+                    hoverOffset: 4
+                }]
+            };
+
+            const devPlanConfig = {
+                type: 'doughnut',
+                data: devPlanData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'right' },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.label}: ${context.parsed}%`;
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+            
+            const devPlanChartCtx = document.getElementById('devPlanChart')?.getContext('2d');
+            if(devPlanChartCtx) new Chart(devPlanChartCtx, devPlanConfig);
+
+            // Initial setup
+            const initialSection = window.location.hash.substring(1) || 'overview';
+            showSection(initialSection);
+            showTechTab('backend');
+            
+            const observer = new IntersectionObserver((entries) => {
+                if(entries[0].isIntersecting){
+                    drawAllLines();
+                    observer.disconnect();
+                }
+            }, { threshold: 0.1 });
+            if (dataModelSection) observer.observe(dataModelSection);
+        });
+    </script>
+</body>
+</html>
+```
